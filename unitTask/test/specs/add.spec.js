@@ -24,7 +24,7 @@ describe(`add negative scenarios`, () => {
   afterEach(() => {
     calculator = null;
   });
-  it(`should throw exception one of arguments is not a number`, () => {
+  it(`should throw exception if one of arguments is not a number`, () => {
     expect(() => calculator.add(2, 'hello')).to.throw(
       Error,
       `You should use numbers for adding.`
