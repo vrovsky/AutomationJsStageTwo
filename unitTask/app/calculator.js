@@ -20,8 +20,8 @@ class Calculator {
   add(firstNumber, secondNumber) {
     const typeOfFirstNumber = typeof firstNumber;
     const typeOfSecondNumber = typeof secondNumber;
-    if (typeOfFirstNumber !== 'number' && typeOfSecondNumber !== 'number') {
-      throw new Error(`You should use numbers to calculate them.`);
+    if (typeOfFirstNumber !== 'number' || typeOfSecondNumber !== 'number') {
+      throw new Error(`You should use numbers for adding.`);
     } else {
       return firstNumber + secondNumber;
     }
@@ -37,8 +37,8 @@ class Calculator {
   multiply(firstNumber, secondNumber) {
     const typeOfFirstNumber = typeof firstNumber;
     const typeOfSecondNumber = typeof secondNumber;
-    if (typeOfFirstNumber !== 'number' && typeOfSecondNumber !== 'number') {
-      throw new Error(`You should use numbers to calculate them.`);
+    if (typeOfFirstNumber !== 'number' || typeOfSecondNumber !== 'number') {
+      throw new Error(`You should use numbers for multiplying`);
     } else {
       return firstNumber * secondNumber;
     }
