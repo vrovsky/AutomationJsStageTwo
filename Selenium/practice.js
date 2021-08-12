@@ -6,15 +6,24 @@ async function example() {
   try {
     await driver.get('http://pastebin.com/');
     await driver
-      .findElement(By.id('postform-text'))
+      .findElement(By.xpath('//*[@id="postform-text"]'))
       .sendKeys('Hello from WebDriver');
-    await driver.findElement(
-      By.id('select2-postform-expiration-container').click(
-        'select2-postform-expiration-result-lnmf-10M'
+    await driver
+      .findElement(By.xpath('//*[@id="select2-postform-expiration-container"]'))
+      .click();
+    await driver
+      .wait(
+        until.elementsLocated(
+          By.xpath('//*[@id="select2-postform-expiration-results"]')
+        ),
+        20000
       )
-    );
-    // await driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+      .then.findElement(
+        By.xpath('//*[@id="select2-postform-expiration-result-7dyq-10M"]')
+      )
+      .click();
   } finally {
+    await driver.sleep(5000);
     await driver.quit();
   }
 }
