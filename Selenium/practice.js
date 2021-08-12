@@ -11,16 +11,15 @@ async function example() {
     await driver
       .findElement(By.xpath('//*[@id="select2-postform-expiration-container"]'))
       .click();
-    await driver
-      .wait(
-        until.elementsLocated(
-          By.xpath('//*[@id="select2-postform-expiration-results"]')
-        ),
-        20000
-      )
-      .then.findElement(
-        By.xpath('//*[@id="select2-postform-expiration-result-7dyq-10M"]')
-      )
+    await driver // добавить именно значение 10 минут через список
+      //   .wait(
+      //     until.elementsLocated(
+      //       By.xpath('//*[@id="select2-postform-expiration-results"]')
+      //     ),
+      //     20000
+      //   )
+      //   .then
+      .findElement(By.css('#postform-expiration > option:nth-child(3)'))
       .click();
   } finally {
     await driver.sleep(5000);
