@@ -1,4 +1,4 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const { Builder, By, Key, until, WebDriver } = require('selenium-webdriver');
 require('chromedriver');
 
 async function example() {
