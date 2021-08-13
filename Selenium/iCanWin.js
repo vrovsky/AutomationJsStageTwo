@@ -1,7 +1,7 @@
-const { Builder, By, Key, until, WebDriver } = require('selenium-webdriver');
+const { Builder, By, Key } = require('selenium-webdriver');
 require('chromedriver');
 
-async function example() {
+async function pastebinWebdriver() {
   let driver = await new Builder().forBrowser('chrome').build();
   try {
     await driver.get('http://pastebin.com/');
@@ -24,4 +24,4 @@ async function example() {
     await driver.quit();
   }
 }
-example();
+pastebinWebdriver();
