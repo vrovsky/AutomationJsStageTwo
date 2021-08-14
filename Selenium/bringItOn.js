@@ -1,4 +1,11 @@
-const { Builder, By, Key, until, WebDriver } = require('selenium-webdriver');
+const {
+  Builder,
+  By,
+  Key,
+  until,
+  WebDriver,
+  getText,
+} = require('selenium-webdriver');
 require('chromedriver');
 
 async function pastebinWebdriver() {
@@ -28,10 +35,10 @@ git push origin master --force`,
     await driver
       .findElement(By.id('postform-name'))
       .sendKeys('how to gain dominance among developers', Key.RETURN);
-    // await driver.wait(
-    //   until.titleIs('how to gain dominance among developers'),
-    //   1000
-    // );
+    await driver.wait(
+      until.titleIs('how to gain dominance among developers'),
+      1000
+    );
     await driver.wait(
       until.elementTextIs(
         By.xpath(
