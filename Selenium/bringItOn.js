@@ -36,17 +36,17 @@ async function pastebinWebdriver() {
     await driver
       .findElement(By.id('postform-name'))
       .sendKeys('how to gain dominance among developers', Key.RETURN);
-    // await driver.wait(
-    //   until.titleIs('how to gain dominance among developers'),
-    //   1000
-    // );
-    let bashElement = await driver.wait(
-      until.elementsLocated(
-        By.xpath(
-          '/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/a'
-        )
-      )
+    await driver.sleep(5000);
+    await driver.wait(
+      until.titleIs('how to gain dominance among developers'),
+      1000
     );
+    // await (await driver.findElement(By.linkText('Bash'))).click();
+    let bashElement = await driver.findElement(
+      By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]')
+    );
+
+    await driver.wait(until.elementTextContains(bashElement, 'Bash'), 1000);
     await driver.sleep(5000);
   } finally {
     await driver.quit();
