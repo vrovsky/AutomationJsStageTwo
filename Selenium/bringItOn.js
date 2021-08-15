@@ -36,10 +36,9 @@ async function pastebinWebdriver() {
     await driver
       .findElement(By.id('postform-name'))
       .sendKeys('how to gain dominance among developers', Key.RETURN);
-    await driver.sleep(5000);
     await driver.wait(
       until.titleIs('how to gain dominance among developers'),
-      1000
+      10000
     );
     // await (await driver.findElement(By.linkText('Bash'))).click();
     let bashElement = await driver.findElement(
@@ -47,7 +46,7 @@ async function pastebinWebdriver() {
     );
 
     await driver.wait(until.elementTextContains(bashElement, 'Bash'), 1000);
-    await driver.sleep(5000);
+    // await driver.sleep(5000);
   } finally {
     await driver.quit();
   }
