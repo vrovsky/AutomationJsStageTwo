@@ -1,6 +1,7 @@
-const homepage = require('../page/homepage');
+const homepage = require('../pageobject/homepage');
 
-describe('This is the describe block', () => {
+describe('I can win task for selenium webdriverjs tutorial', function () {
+  this.timeout(50000);
   beforeEach(() => {
     //Enter acttions performed before test
   });
@@ -8,12 +9,12 @@ describe('This is the describe block', () => {
     //Enter actions to be performed after test
   });
   it('POM Test', () => {
-    var baseurl = 'http://www.pastebin.com';
-    homepage.goToUrl(baseurl);
-    homepage.enter_postform('Hello from WebDriver');
-    homepage.find_expirationForm();
-    homepage.chose_expiration();
-    homepage.enter_postformName('helloweb');
-    homepage.waitAlittle();
+    var baseurl = 'http://pastebin.com/';
+    homepage.go_to_url(baseurl);
+    // homepage.enter_postform('Hello from WebDriver');
+    // homepage.find_expirationForm();
+    // homepage.chose_expiration();
+    // homepage.enter_postformName('helloweb');
+    // homepage.waitAlittle();
   });
 });

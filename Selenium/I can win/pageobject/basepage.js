@@ -6,7 +6,7 @@ class BasePage {
   constructor() {
     global.driver = driver;
   }
-  goToUrl(theURL) {
+  go_to_url(theURL) {
     driver.get(theURL);
   }
 }
