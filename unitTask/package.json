@@ -1,0 +1,27 @@
+{
+  "name": "unittask",
+  "version": "1.0.0",
+  "description": "calculator project with unit testing using mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "nyc npm run test"
+  },
+  "keywords": [
+    "mocha",
+    "unit",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^9.0.3",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "reporter": "html"
+  }
+}
