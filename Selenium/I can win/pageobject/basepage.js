@@ -1,5 +1,5 @@
-var webdriver = require('selenium-webdriver');
-var driver = new webdriver.Builder().forBrowser('chrome').build();
+let webdriver = require('selenium-webdriver');
+let driver = new webdriver.Builder().forBrowser('chrome').build();
 driver.manage().setTimeouts({ implicit: 100000 });
 
 class BasePage {

@@ -8,10 +8,10 @@ describe('I can win task for selenium webdriverjs tutorial', function () {
   afterEach(() => {
     //Enter actions to be performed after test
   });
-  it('POM Test', () => {
+  it('Pastebind I can win test', function () {
     var baseurl = 'http://pastebin.com/';
     homepage.go_to_url(baseurl);
-    // homepage.enter_postform('Hello from WebDriver');
+    homepage.enter_postform('Hello from WebDriver');
     // homepage.find_expirationForm();
     // homepage.chose_expiration();
     // homepage.enter_postformName('helloweb');

@@ -1,5 +1,5 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
-var BasePage = require('./basepage');
+var BasePage = require('../pageobject/basepage');
 var webdriver = require('selenium-webdriver');
 
 class HomePage extends BasePage {
