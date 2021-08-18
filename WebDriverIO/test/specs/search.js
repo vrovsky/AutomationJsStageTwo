@@ -1,7 +1,7 @@
 describe('Ebay Product search', () => {
-  it('should open the main url and verify the title', () => {
-    browser.url('http://ebay.com');
-    expect(browser).toHaveTitle(
+  it('should open the main url and verify the title', async () => {
+    await browser.url('http://ebay.com');
+    await expect(browser).toHaveTitle(
       'Электроника, автомобили, мода, коллекционирование, купоны и другие товары | eBay'
     );
   });
