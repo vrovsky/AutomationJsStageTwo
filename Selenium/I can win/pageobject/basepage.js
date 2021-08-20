@@ -6,8 +6,8 @@ class BasePage {
   constructor() {
     global.driver = driver;
   }
-  go_to_url(theURL) {
-    driver.get(theURL);
+  async go_to_url(theURL) {
+    await driver.get(theURL);
   }
 }
 
