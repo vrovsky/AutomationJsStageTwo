@@ -29,6 +29,11 @@ git push origin master --force`;
   get bashHighlightEnable() {
     return $('.bash');
   }
+  get textArea() {
+    return $(
+      'body > div.wrap > div.container > div.content > div.post-view > textarea'
+    );
+  }
   open() {
     super.open('http://pastebin.com');
   }

@@ -1,6 +1,6 @@
 import PastebinPage from '../pageobjects/pastebin.page';
 describe('I can win webdriverIO task', () => {
-  it('should open the main url', async () => {
+  before(() => {
     PastebinPage.open();
   });
   it('should find New Paste form and input text', async () => {
@@ -26,7 +26,11 @@ describe('I can win webdriverIO task', () => {
     );
   });
   it('should check if bash syntax enabled', async () => {
-    await expect(PastebinPage.bashHighlightEnable).toBeDisabled();
+    await expect(PastebinPage.bashHighlightEnable).toBeDisplayed();
   });
-  it('should check the Paste code', async () => {});
+  it('should check the Paste code', async () => {
+    await expect(PastebinPage.textArea).toHaveValueContaining(
+      PastebinPage.pasteCode
+    );
+  });
 });
