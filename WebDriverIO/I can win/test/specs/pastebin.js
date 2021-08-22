@@ -1,6 +1,6 @@
 import PastebinPage from '../pageobjects/pastebin.page';
 describe('I can win webdriverIO task', () => {
-  it('should open the main url', async () => {
+  before(() => {
     PastebinPage.open();
   });
   it('should find New Paste form and input text', async () => {
