@@ -71,25 +71,16 @@ class CloudgooglePage extends Page {
       '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.layout-align-end-start.layout-row > button'
     );
   }
-  get vmClassItem() {
-    return $('#compute > md-list > md-list-item:nth-child(4) > div');
+  get emailEstimateBtn() {
+    return $('#email_quote');
   }
-  get instanceTypeItem() {
-    return $('#compute > md-list > md-list-item:nth-child(6) > div');
+  get emailField() {
+    return $('//input[@type="email"]');
   }
-  get regionItem() {
-    return $('#compute > md-list > md-list-item:nth-child(8) > div');
-  }
-  get localSDDItem() {
-    return $('#compute > md-list > md-list-item:nth-child(10) > div');
-  }
-  get commitmentTermItem() {
-    return $('#compute > md-list > md-list-item:nth-child(12) > div');
-  }
-  get exstimatedCostItem() {
-    return $(
-      '#resultBlock > md-card > md-card-content > div > div > div > h2 > b'
-    );
+  get sendEmailBtn() {
+    return $$(
+      '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"]'
+    )[6];
   }
   get firstChildFrame() {
     return $("//iframe[@name='goog_2136849245']");

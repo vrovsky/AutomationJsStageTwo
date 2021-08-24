@@ -1,4 +1,5 @@
 import CloudgooglePage from '../pageobjects/cloudgoogle.page';
+import YopmailPage from '../pageobjects/yopmail.page';
 
 describe('Hurt me plenty webdriverIO task', () => {
   before(() => {
@@ -48,20 +49,29 @@ describe('Hurt me plenty webdriverIO task', () => {
   it('should add to estimate', async () => {
     await CloudgooglePage.addToEstimateBtn.click();
   });
-  it('should check parameters and price', async () => {
-    await expect(CloudgooglePage.vmClassItem).toHaveText('VM class: regular');
-    await expect(CloudgooglePage.instanceTypeItem).toHaveText(
-      'Instance type: n1-standard-8'
-    );
-    await expect(CloudgooglePage.regionItem).toHaveText('Region: Frankfurt');
-    await expect(CloudgooglePage.localSDDItem).toHaveText(
-      'Total available local SSD space 2x375 GiB'
-    );
-    await expect(CloudgooglePage.commitmentTermItem).toHaveText(
-      'Commitment term: 1 Year'
-    );
-    await expect(CloudgooglePage.exstimatedCostItem).toHaveText(
-      'Total Estimated Cost: USD 1,083.33 per 1 month'
-    );
+  it('should click email estimate button', async () => {
+    await CloudgooglePage.emailEstimateBtn.click();
+  });
+  it('should open second page with mailbox and generate new mail', async () => {
+    await browser.newWindow(YopmailPage.youpmailURL);
+    await YopmailPage.generateMailBtn.click();
+  });
+  it('should copy and paste generated mail', async () => {
+    // await expect(YopmailPage.newMailGenerated).toBeDisplayed(2000);
+    let generatedMail = await YopmailPage.newMailGenerated.getText();
+    await browser.switchWindow('cloud.google.com');
+    await browser.switchToFrame(0);
+    await browser.switchToFrame(0);
+    await CloudgooglePage.emailField.click();
+    await CloudgooglePage.emailField.addValue(generatedMail);
+    await CloudgooglePage.sendEmailBtn.click();
+  });
+  it('should switch to mail page and check costs', async () => {
+    await browser.switchWindow('yopmail.com');
+    await YopmailPage.checkMailBtn.click();
+    await browser.refresh();
+    await browser.switchToFrame(0);
+    await expect(YopmailPage.monthlyCostsField).toBeDisplayed();
+    // await expect(YopmailPage.monthlyCostsField).toHaveText('USD 1,083.33');
   });
 });
