@@ -16,7 +16,9 @@ class YopmailPage extends Page {
     );
   }
   get monthlyCostsField() {
-    return $('//tr[@valign="top"]');
+    return $(
+      '#mail > div > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2) > h3'
+    );
   }
   open() {
     super.open('https://yopmail.com/ru/');

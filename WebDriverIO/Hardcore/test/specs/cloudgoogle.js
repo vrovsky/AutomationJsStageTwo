@@ -70,8 +70,7 @@ describe('Hurt me plenty webdriverIO task', () => {
     await browser.switchWindow('yopmail.com');
     await YopmailPage.checkMailBtn.click();
     await browser.refresh();
-    await browser.switchToFrame(0);
-    await expect(YopmailPage.monthlyCostsField).toBeDisplayed();
-    // await expect(YopmailPage.monthlyCostsField).toHaveText('USD 1,083.33');
+    await browser.switchToFrame(2);
+    await expect(YopmailPage.monthlyCostsField).toHaveText('USD 1,083.33');
   });
 });
