@@ -32,6 +32,9 @@ class PastebinPage extends Page {
   get pastebinUrl() {
     return 'http://pastebin.com/';
   }
+  get title() {
+    return 'helloweb';
+  }
 }
 
 module.exports = new PastebinPage();

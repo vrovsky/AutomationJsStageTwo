@@ -13,6 +13,6 @@ describe('I can win task for selenium webdriverjs tutorial', function () {
     await PastebinPage.enter_postform('Hello from WebDriver');
     await PastebinPage.find_expirationForm();
     await PastebinPage.chose_expiration();
-    await PastebinPage.enter_postformName('helloweb');
+    await PastebinPage.enter_postformName(PastebinPage.title);
   });
 });
