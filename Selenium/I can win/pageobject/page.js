@@ -2,13 +2,13 @@ let webdriver = require('selenium-webdriver');
 let driver = new webdriver.Builder().forBrowser('chrome').build();
 driver.manage().setTimeouts({ implicit: 100000 });
 
-class BasePage {
+class Page {
   constructor() {
     global.driver = driver;
   }
-  async go_to_url(theURL) {
-    await driver.get(theURL);
+  async open(url) {
+    await driver.get(url);
   }
 }
 
-module.exports = BasePage;
+module.exports = Page;

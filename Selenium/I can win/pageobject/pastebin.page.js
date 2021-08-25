@@ -1,9 +1,9 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
-var BasePage = require('../pageobject/basepage');
+var Page = require('./page');
 var webdriver = require('selenium-webdriver');
 
-class HomePage extends BasePage {
-  //This will endter test into postform
+class PastebinPage extends Page {
+  //This will enter test into postform
   async enter_postform(postformText) {
     await driver
       .findElement(By.xpath('//*[@id="postform-text"]'))
@@ -29,9 +29,9 @@ class HomePage extends BasePage {
       .findElement(By.id('postform-name'))
       .sendKeys(postformNameText, Key.RETURN);
   }
-  async waitAlittle() {
-    await driver.sleep(50000);
+  get pastebinUrl() {
+    return 'http://pastebin.com/';
   }
 }
 
-module.exports = new HomePage();
+module.exports = new PastebinPage();
