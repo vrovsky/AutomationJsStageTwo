@@ -16,31 +16,40 @@ class CloudGooglePage extends Page {
       .sendKeys('Google Cloud Platform Pricing Calculator', Key.RETURN);
   }
 
-  async chose_searchingResult() {
+  async find_searchingResult() {
     await driver.findElement(By.css('.gs-title')).click();
   }
-  async switchToFirstFrame() {
-    let firstFrame = await driver.findElement(
-      By.xpath('//iframe[contains(@name,"goog_")]')
-    );
-    let secondFrame = await driver.findElement(By.id('myframe'));
-    await driver.switchTo().frame(firstFrame);
-    await driver.switchTo().frame(secondFrame);
+  async switchToFrame() {
+    await driver
+      .switchTo()
+      .frame(
+        await driver.findElement(By.xpath("//iframe[contains(@name,'goog_')]"))
+      );
+    await driver.switchTo().frame(await driver.findElement(By.id('myFrame')));
   }
 
   async find_numberOfInstancesField() {
     await driver
-      .findElement(By.xpath('//*[@id="input_67"]'))
-      .click()
-      .sendKeys('4', Key.RETURN);
+      .findElement(
+        By.xpath('//input[@ng-model="listingCtrl.computeServer.quantity"]')
+      )
+      .sendKeys('4');
   }
   async find_machineSeriesList() {
-    await driver.findElement(
-      By.css('#select_value_label_63 > span:nth-child(1) > div')
-    );
+    await driver
+      .findElements(
+        By.xpath(
+          '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
+        )[0]
+      )
+      .click();
   }
   async find_n1MachineSeries() {
-    await driver.findElement(By.xpath('//*[@id="select_option_201"]')).click();
+    await driver
+      .findElement(
+        By.xpath('//md-option[@value="n1"]//div[@class="md-text ng-binding"]')
+      )
+      .click();
   }
 
   async find_machineTypeList() {
@@ -145,7 +154,7 @@ class CloudGooglePage extends Page {
       )
       .click();
   }
-  async find_exstimatedCostItem() {
+  async find_estimatedCostItem() {
     await driver
       .findElement(
         By.css(
