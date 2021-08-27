@@ -13,13 +13,15 @@ class CloudgooglePage extends Page {
     return $('.gs-title');
   }
   get numberOfInstancesField() {
-    return $('//*[@id="input_67"]');
+    return $('//input[@ng-model="listingCtrl.computeServer.quantity"]');
   }
   get machineSeriesList() {
-    return $('#select_value_label_63 > span:nth-child(1) > div');
+    return $$(
+      '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
+    )[0];
   }
   get n1MachineSeries() {
-    return $('//*[@id="select_option_201"]');
+    return $('//md-option[@value="n1"]//div[@class="md-text ng-binding"]');
   }
   get machineTypeList() {
     return $('#select_value_label_64 > span:nth-child(1) > div');
