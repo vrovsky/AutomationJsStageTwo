@@ -10,8 +10,6 @@ describe('Hurt me plenty webdriverIO task', () => {
       'Google Cloud Platform Pricing Calculator'
     );
     await CloudgooglePage.inputSearchField.keys('\uE007');
-  });
-  it('should choose pricing calculator from the search list', async () => {
     await CloudgooglePage.searchingResult.click();
   });
   it('should chose number of instances', async () => {

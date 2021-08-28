@@ -5,12 +5,12 @@ class CloudgooglePage extends Page {
     return $('.devsite-searchbox');
   }
   get inputSearchField() {
-    return $(
-      '/html/body/section/devsite-header/div/div[1]/div/div/div[2]/devsite-search/form/div[1]/div/input'
-    );
+    return $('//input[@name="q"]');
   }
   get searchingResult() {
-    return $('.gs-title');
+    return $(
+      '//*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/div/a'
+    );
   }
   get numberOfInstancesField() {
     return $('//input[@ng-model="listingCtrl.computeServer.quantity"]');
@@ -24,54 +24,68 @@ class CloudgooglePage extends Page {
     return $('//md-option[@value="n1"]//div[@class="md-text ng-binding"]');
   }
   get machineTypeList() {
-    return $('#select_value_label_64 > span:nth-child(1) > div');
+    return $$(
+      '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
+    )[1];
   }
   get n1s8MachineType() {
-    return $('//*[@id="select_option_397"]');
+    return $('//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]');
   }
   get addGPUsButton() {
-    return $$('div.md-label')[1];
+    return $('//md-checkbox[@aria-label="Add GPUs"]');
   }
   get numberOfGPUsList() {
     return $(
-      '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.ng-scope.layout-column > div.layout-row > div.layout-column.flex-gt-sm-90.flex-80 > div.layout-row.flex-gt-sm-90.flex-80 > md-input-container:nth-child(1)'
+      '//md-select[@placeholder="Number of GPUs"]//div[@class="md-text ng-binding"]'
     );
   }
   get neededNumberOfGPUs() {
-    return $('#select_option_436');
+    return $$(
+      '//md-option[@ng-disabled="item.value != 0 && item.value < listingCtrl.minGPU"]'
+    )[1];
   }
   get typeOfGPUsList() {
     return $(
-      '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.ng-scope.layout-column > div.layout-row > div.layout-column.flex-gt-sm-90.flex-80 > div.layout-row.flex-gt-sm-90.flex-80 > md-input-container:nth-child(2)'
+      '//md-input-container[@class="md-input-has-placeholder md-input-has-value flex"]'
     );
   }
   get neededTypeOfGPU() {
-    return $('#select_option_443');
+    return $('//md-option[@value="NVIDIA_TESLA_V100"]');
   }
   get listOfSDDs() {
-    return $('#select_value_label_391 > span:nth-child(1) > div');
+    return $(
+      '//md-select[@placeholder="Local SSD"]//md-select-value[@class="md-select-value"]//span//div[@class="md-text ng-binding"]'
+    );
   }
   get neededTypeOfSDD() {
-    return $('#select_option_418');
+    return $(
+      '//md-option[@ng-repeat="item in listingCtrl.dynamicSsd.computeServer"][@value="2"]'
+    );
   }
   get datacenterLocationList() {
-    return $('#select_value_label_65');
+    return $(
+      '//md-select[@placeholder="Datacenter location"]//md-select-value[@class="md-select-value"]'
+    );
   }
   get neededDatacenterLocation() {
-    return $('#select_option_218');
+    return $(
+      '//md-select-menu[@class="md-overflow"]//md-option[@value="europe-west3"]//div[@class="md-text ng-binding"]'
+    );
   }
   get commitedUsageList() {
     return $(
-      '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(17) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container'
+      '//md-select[@placeholder="Committed usage"][@ng-disabled="listingCtrl.isCudDisabled"]//md-select-value[@class="md-select-value"]//span//div'
     );
   }
   get commitedUsageTime() {
-    return $('#select_option_101');
+    return $(
+      '//div[@class="md-select-menu-container md-active md-clickable"]//md-select-menu//md-content//md-option[@ng-value="1"]//div[@class="md-text"]'
+    );
   }
   get addToEstimateBtn() {
-    return $(
-      '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.layout-align-end-start.layout-row > button'
-    );
+    return $$(
+      '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"][@aria-label="Add to Estimate"]'
+    )[0];
   }
   get vmClassItem() {
     return $('#compute > md-list > md-list-item:nth-child(4) > div');
