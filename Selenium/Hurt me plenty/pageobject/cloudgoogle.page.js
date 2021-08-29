@@ -8,16 +8,11 @@ class CloudGooglePage extends Page {
   }
   async find_inputSearchField() {
     await driver
-      .findElement(
-        By.xpath(
-          '/html/body/section/devsite-header/div/div[1]/div/div/div[2]/devsite-search/form/div[1]/div/input'
-        )
-      )
+      .findElement(By.xpath('//input[@name="q"]'))
       .sendKeys('Google Cloud Platform Pricing Calculator', Key.RETURN);
   }
-
-  async find_searchingResult() {
-    await driver.findElement(By.css('.gs-title')).click();
+  async find_searchResult() {
+    await driver.findElement(By.xpath('//a[@class="gs-title"][1]')).click();
   }
   async switchToFrame() {
     await driver
@@ -28,7 +23,7 @@ class CloudGooglePage extends Page {
     await driver.switchTo().frame(await driver.findElement(By.id('myFrame')));
   }
 
-  async find_numberOfInstancesField() {
+  async find_numberOfInstancesFields() {
     await driver
       .findElement(
         By.xpath('//input[@ng-model="listingCtrl.computeServer.quantity"]')
@@ -37,10 +32,10 @@ class CloudGooglePage extends Page {
   }
   async find_machineSeriesList() {
     await driver
-      .findElements(
+      .findElement(
         By.xpath(
-          '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
-        )[0]
+          '//md-select[@placeholder="Series"]//md-select-value//span//div'
+        )
       )
       .click();
   }
@@ -54,75 +49,118 @@ class CloudGooglePage extends Page {
 
   async find_machineTypeList() {
     await driver
-      .findElement(By.css('#select_value_label_64 > span:nth-child(1) > div'))
+      .findElement(
+        By.xpath(
+          '//md-select[@placeholder="Instance type"]//md-select-value//span//div'
+        )
+      )
       .click();
   }
 
   async find_n1s8MachineType() {
     await driver
-      .findElement(By.css('#select_value_label_64 > span:nth-child(1) > div'))
+      .findElement(
+        By.xpath('//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]')
+      )
       .click();
   }
   async find_addGPUsButton() {
-    await driver.findElements(By.css('div.md-label')[1]).click();
+    await driver
+      .findElement(By.xpath('//md-checkbox[@aria-label="Add GPUs"]'))
+      .click();
+  }
+  async find_numberOfGPUsList() {
+    await driver
+      .findElement(
+        By.xpath(
+          '//md-select[@placeholder="Number of GPUs"]//div[@class="md-text ng-binding"]'
+        )
+      )
+      .click();
   }
   async find_neededNumberOfGPUs() {
-    await driver.findElement(By.css('#select_option_436')).click();
+    await driver
+      .findElement(
+        By.xpath(
+          '//md-option[@ng-disabled="item.value != 0 && item.value < listingCtrl.minGPU"][2]'
+        )
+      )
+      .click();
   }
   async find_typeOfGPUsList() {
     await driver
       .findElement(
-        By.css(
-          '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.ng-scope.layout-column > div.layout-row > div.layout-column.flex-gt-sm-90.flex-80 > div.layout-row.flex-gt-sm-90.flex-80 > md-input-container:nth-child(2)'
+        By.xpath(
+          '//md-input-container[@class="md-input-has-placeholder md-input-has-value flex"]'
         )
       )
       .click();
   }
   async find_neededTypeOfGPU() {
-    await driver.findElement(By.css('#select_option_443')).click();
+    await driver
+      .findElement(By.xpath('//md-option[@value="NVIDIA_TESLA_V100"]'))
+      .click();
   }
   async find_listOfSDDs() {
     await driver
-      .findElement(By.css('#select_value_label_391 > span:nth-child(1) > div'))
+      .findElement(
+        By.xpath(
+          '//md-select[@placeholder="Local SSD"]//md-select-value[@class="md-select-value"]//span//div[@class="md-text ng-binding"]'
+        )
+      )
       .click();
   }
   async find_neededTypeOfSDD() {
-    await driver.findElement(By.css('#select_option_418')).click();
+    await driver
+      .findElement(
+        By.xpath(
+          '//md-option[@ng-repeat="item in listingCtrl.dynamicSsd.computeServer"][@value="2"]'
+        )
+      )
+      .click();
   }
   async find_datacenterLocationList() {
-    await driver.findElement(By.css('#select_value_label_65')).click();
+    await driver
+      .findElement(
+        By.xpath(
+          '//md-select[@placeholder="Datacenter location"]//md-select-value[@class="md-select-value"]'
+        )
+      )
+      .click();
   }
   async find_neededDatacenterLocation() {
-    await driver.findElement(By.css('#select_option_218')).click();
-  }
-  async find_neededTypeOfSDD() {
-    await driver.findElement(By.css('#select_option_418')).click();
+    await driver
+      .findElement(
+        By.xpath(
+          '//md-select-menu[@class="md-overflow"]//md-option[@value="europe-west3"]//div[@class="md-text ng-binding"]'
+        )
+      )
+      .click();
   }
   async find_commitedUsageList() {
     await driver
       .findElement(
-        By.css(
-          '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div:nth-child(17) > div.layout-column.flex-gt-sm-90.flex-80 > md-input-container'
+        By.xpath(
+          '//md-select[@placeholder="Committed usage"][@ng-disabled="listingCtrl.isCudDisabled"]//md-select-value[@class="md-select-value"]//span//div'
         )
       )
       .click();
   }
   async find_commitedUsageTime() {
-    await driver.findElement(By.css('#select_option_101')).click();
-  }
-  async find_addToEstimateBtn() {
     await driver
       .findElement(
-        By.css(
-          '#mainForm > div:nth-child(3) > div > md-card > md-card-content > div > div:nth-child(1) > form > div.layout-align-end-start.layout-row > button'
+        By.xpath(
+          '//div[@class="md-select-menu-container md-active md-clickable"]//md-select-menu//md-content//md-option[@ng-value="1"]//div[@class="md-text"]'
         )
       )
       .click();
   }
-  async find_vmClassItem() {
+  async find_addToEstimateBtn() {
     await driver
       .findElement(
-        By.css('#compute > md-list > md-list-item:nth-child(4) > div')
+        By.xpath(
+          '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"][@aria-label="Add to Estimate"][1]'
+        )
       )
       .click();
   }
@@ -131,28 +169,28 @@ class CloudGooglePage extends Page {
       .findElement(
         By.css('#compute > md-list > md-list-item:nth-child(6) > div')
       )
-      .click();
+      .getText();
   }
   async find_localSDDItem() {
     await driver
       .findElement(
         By.css('#compute > md-list > md-list-item:nth-child(8) > div')
       )
-      .click();
+      .getText();
   }
   async find_regionItem() {
     await driver
       .findElement(
         By.css('#compute > md-list > md-list-item:nth-child(10) > div')
       )
-      .click();
+      .getText();
   }
   async find_commitmentTermItem() {
     await driver
       .findElement(
         By.css('#compute > md-list > md-list-item:nth-child(12) > div')
       )
-      .click();
+      .getText();
   }
   async find_estimatedCostItem() {
     await driver
@@ -161,7 +199,7 @@ class CloudGooglePage extends Page {
           '#resultBlock > md-card > md-card-content > div > div > div > h2 > b'
         )
       )
-      .click();
+      .getText();
   }
 
   get cloudGoogleUrl() {
