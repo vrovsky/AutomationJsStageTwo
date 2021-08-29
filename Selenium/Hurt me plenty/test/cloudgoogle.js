@@ -76,7 +76,7 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
   it('should check local SDD selected', async () => {
     let localSDD = await driver
       .findElement(
-        By.css('#compute > md-list > md-list-item:nth-child(8) > div')
+        By.css('#compute > md-list > md-list-item:nth-child(10) > div')
       )
       .getText();
     await expect(localSDD).is.equal(
@@ -86,10 +86,10 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
   it('should check region selected', async () => {
     let regionSelected = await driver
       .findElement(
-        By.css('#compute > md-list > md-list-item:nth-child(10) > div')
+        By.css('#compute > md-list > md-list-item:nth-child(8) > div')
       )
       .getText();
-    await expect(commitedTerm).is.equal('Commitment term: 1 Year');
+    await expect(regionSelected).is.equal('Region: Frankfurt');
   });
   it('should check commited term selected', async () => {
     let commitedTerm = await driver
@@ -97,8 +97,7 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
         By.css('#compute > md-list > md-list-item:nth-child(12) > div')
       )
       .getText();
-
-    await expect(regionSelected).is.equal('Region: Frankfurt');
+    await expect(commitedTerm).is.equal('Commitment term: 1 Year');
   });
   it('should check estimated cost', async () => {
     let estimatedCost = await driver
