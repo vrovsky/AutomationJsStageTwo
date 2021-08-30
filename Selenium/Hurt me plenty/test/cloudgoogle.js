@@ -1,9 +1,6 @@
 const CloudGooglePage = require('../pageobject/cloudgoogle.page');
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
+const { By } = require('selenium-webdriver');
 const { expect } = require('chai');
-chai.use(chaiAsPromised);
-const { Builder, By, Key, until } = require('selenium-webdriver');
 
 describe('Hurt me plenty task for selenium webdriver tutorial', function () {
   this.timeout(50000);
@@ -11,15 +8,16 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
     CloudGooglePage.open(CloudGooglePage.cloudGoogleUrl);
     driver.manage().window().maximize();
   });
+
   after(() => {
     driver.quit();
   });
+
   it('should find pricing calculator', async () => {
     await CloudGooglePage.find_searchBox();
     await CloudGooglePage.find_inputSearchField();
     await CloudGooglePage.find_searchResult();
   });
-
   it('should switch to frame ', async () => {
     await CloudGooglePage.switchToFrame();
   });
@@ -34,7 +32,6 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
     await CloudGooglePage.find_machineTypeList();
     await CloudGooglePage.find_n1s8MachineType();
   });
-
   it('should add GPU', async () => {
     await CloudGooglePage.find_addGPUsButton();
     await CloudGooglePage.find_numberOfGPUsList();
@@ -57,6 +54,7 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
   it('should add to estimate', async () => {
     await CloudGooglePage.find_addToEstimateBtn();
   });
+
   it('should check virtual machine class selected', async () => {
     let virtualMachineClass = await driver
       .findElement(

@@ -201,7 +201,6 @@ class CloudGooglePage extends Page {
       )
       .getText();
   }
-
   get cloudGoogleUrl() {
     return ' https://cloud.google.com/';
   }
