@@ -8,25 +8,21 @@ class CloudgooglePage extends Page {
     return $('//input[@name="q"]');
   }
   get searchingResult() {
-    return $(
-      '//*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/div/a'
-    );
+    return $('//a[@class="gs-title"][1]');
   }
   get numberOfInstancesField() {
     return $('//input[@ng-model="listingCtrl.computeServer.quantity"]');
   }
   get machineSeriesList() {
-    return $$(
-      '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
-    )[0];
+    return $('//md-select[@placeholder="Series"]//md-select-value//span//div');
   }
   get n1MachineSeries() {
     return $('//md-option[@value="n1"]//div[@class="md-text ng-binding"]');
   }
   get machineTypeList() {
-    return $$(
-      '//md-select-value[@class="md-select-value"]//div[@class="md-text ng-binding"]'
-    )[1];
+    return $(
+      '//md-select[@placeholder="Instance type"]//md-select-value//span//div'
+    );
   }
   get n1s8MachineType() {
     return $('//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]');
@@ -40,9 +36,9 @@ class CloudgooglePage extends Page {
     );
   }
   get neededNumberOfGPUs() {
-    return $$(
-      '//md-option[@ng-disabled="item.value != 0 && item.value < listingCtrl.minGPU"]'
-    )[1];
+    return $(
+      '//md-option[@ng-disabled="item.value != 0 && item.value < listingCtrl.minGPU"][2]'
+    );
   }
   get typeOfGPUsList() {
     return $(
@@ -83,9 +79,9 @@ class CloudgooglePage extends Page {
     );
   }
   get addToEstimateBtn() {
-    return $$(
-      '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"][@aria-label="Add to Estimate"]'
-    )[0];
+    return $(
+      '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"][@aria-label="Add to Estimate"][1]'
+    );
   }
   get emailEstimateBtn() {
     return $('#email_quote');
@@ -94,9 +90,7 @@ class CloudgooglePage extends Page {
     return $('//input[@type="email"]');
   }
   get sendEmailBtn() {
-    return $$(
-      '//button[@class="md-raised md-primary cpc-button md-button md-ink-ripple"]'
-    )[6];
+    return $('//button[@aria-label="Send Email"]');
   }
   get firstChildFrame() {
     return $("//iframe[@name='goog_2136849245']");

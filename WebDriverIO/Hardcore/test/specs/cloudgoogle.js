@@ -57,7 +57,6 @@ describe('Hurt me plenty webdriverIO task', () => {
     await YopmailPage.generateMailBtn.click();
   });
   it('should copy and paste generated mail', async () => {
-    // await expect(YopmailPage.newMailGenerated).toBeDisplayed(2000);
     let generatedMail = await YopmailPage.newMailGenerated.getText();
     await browser.switchWindow('cloud.google.com');
     await browser.switchToFrame(0);
