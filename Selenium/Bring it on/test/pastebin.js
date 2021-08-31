@@ -1,5 +1,4 @@
 const PastebinPage = require('../pageobject/pastebin.page');
-const { expect } = require('chai');
 const { By, until } = require('selenium-webdriver');
 
 describe('Bring it on task for selenium webdriver tutorial', function () {
@@ -22,15 +21,9 @@ describe('Bring it on task for selenium webdriver tutorial', function () {
     );
   });
   it('should check bash syntax highlighter', async () => {
-    let bashSyntax = await driver
-      .findElement(By.xpath('//a[@href="/archive/bash"]'))
-      .getText();
-    expect(bashSyntax).to.equal('Bash');
+    await PastebinPage.check_textHighlighter();
   });
   it('should check pastecode', async () => {
-    let pasteCode = await driver
-      .findElement(By.xpath('//textarea[@class="textarea"]'))
-      .getText();
-    expect(pasteCode).to.equal(PastebinPage.gitCommands);
+    await PastebinPage.check_pasteText();
   });
 });

@@ -1,6 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var Page = require('./page');
 var webdriver = require('selenium-webdriver');
+const { expect } = require('chai');
 
 class PastebinPage extends Page {
   //This will enter test into postform
@@ -41,39 +42,20 @@ class PastebinPage extends Page {
       .findElement(By.id('postform-name'))
       .sendKeys(postformNameText, Key.RETURN);
   }
-  //This will check title of the new paste
-  async check_title() {
-    await driver.wait(
-      until.titleIs('how to gain dominance among developers - Pastebin.com')
-    );
-  }
+
   //This will check text highlightion
   async check_textHighlighter() {
-    // const bashElement = await driver.findElement(
-    //   By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/div[3]/div[2]/ol')
-    // );
-    await driver.wait(
-      until.elementIsVisible(
-        driver.findElement(
-          By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/div[3]/div[2]/ol')
-        )
-      )
-    );
+    let bashSyntax = await driver
+      .findElement(By.xpath('//a[@href="/archive/bash"]'))
+      .getText();
+    expect(bashSyntax).to.equal('Bash');
   }
   //This will check paste itself
-  async check_pasteText(pasteText) {
-    // const textElement = await driver
-    //   .findElement
-    //   By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/textarea')
-
-    await driver.wait(
-      until.elementTextIs(
-        driver.findElement(
-          By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/textarea'),
-          pasteText
-        )
-      )
-    );
+  async check_pasteText() {
+    let pasteCode = await driver
+      .findElement(By.xpath('//textarea[@class="textarea"]'))
+      .getText();
+    expect(pasteCode).to.equal(gitCommands);
   }
   get textElement() {
     return '/html/body/div[1]/div[2]/div[1]/div[2]/textarea';
