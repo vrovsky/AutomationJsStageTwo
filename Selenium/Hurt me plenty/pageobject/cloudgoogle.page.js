@@ -15,10 +15,7 @@ class CloudGooglePage extends Page {
     this.open(this.cloudGoogleUrl);
     driver.manage().window().maximize();
   }
-  async titleIs() {
-    let title = await driver.getTitle();
-    return title;
-  }
+
   async openPricingCalc() {
     await HelpIt.clickElement(this.searchBox);
     await HelpIt.writeAndSumbit(this.inputSearch, this.googleCalcTitle);

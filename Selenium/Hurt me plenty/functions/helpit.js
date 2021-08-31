@@ -25,7 +25,7 @@ class HelpIt extends Page {
     await driver.findElement(By.xpath(element)).click();
   }
 
-  async checkElement(element, text) {
+  async checkElementForIncluding(element, text) {
     await driver.wait(until.elementLocated(By.css(element), 5000));
     let checkedElement = await driver.findElement(By.css(element)).getText();
     await expect(checkedElement).to.include(text);
