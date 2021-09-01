@@ -1,40 +1,34 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var Page = require('./page');
-var webdriver = require('selenium-webdriver');
+var HelpIt = require('../functions/helpit');
 
 class PastebinPage extends Page {
-  //This will enter test into postform
-  async enter_postform(postformText) {
-    await driver
-      .findElement(By.xpath('//*[@id="postform-text"]'))
-      .sendKeys(postformText);
+  constructor(){
+    super()
+    this.postform = '//*[@id="postform-text"]';
+    this.expirationDroplist = '//*[@id="select2-postform-expiration-container"]';
+    this.neededExpiration = '//*[@id="select2-postform-expiration-results"]/li[3]';
+    this.pasteName = '//input[@id="postform-name"]';
+    this.pasteText = '//textarea[@class="textarea"]';
+
+    this.open(this.pastebinUrl);
+    driver.manage().window().maximize();
   }
-  //This will find Expiration time droplist
-  async find_expirationForm() {
-    await driver
-      .findElement(By.xpath('//*[@id="select2-postform-expiration-container"]'))
-      .click();
+
+  async createPaste(){
+    await HelpIt.write(this.postform, this.postformText);
+    await HelpIt.choseDroplistElement(this.expirationDroplist, this.neededExpiration);
+    await HelpIt.writeAndSumbit(this.pasteName, this.title);
   }
-  //This will choose Expiration time = 10 MIN
-  async chose_expiration() {
-    await driver
-      .findElement(
-        By.xpath('//*[@id="select2-postform-expiration-results"]/li[3]')
-      )
-      .click();
+  
+  async checkPaste(){
+    await HelpIt.checkElementByXpath(this.pasteText, this.postformText)
+    await driver.quit();
   }
-  //This will enter postform name
-  async enter_postformName(postformNameText) {
-    await driver
-      .findElement(By.id('postform-name'))
-      .sendKeys(postformNameText, Key.RETURN);
-  }
-  get pastebinUrl() {
-    return 'http://pastebin.com/';
-  }
-  get title() {
-    return 'helloweb';
-  }
+  
+  get postformText(){ return 'Hello from WebDriver';}
+  get pastebinUrl() { return 'http://pastebin.com/';}
+  get title() { return 'helloweb';}
 }
 
 module.exports = new PastebinPage();
