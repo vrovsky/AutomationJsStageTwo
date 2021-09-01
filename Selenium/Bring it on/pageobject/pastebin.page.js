@@ -1,75 +1,45 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var Page = require('./page');
+var HelpIt = require('../functions/helpit');
 var webdriver = require('selenium-webdriver');
 const { expect } = require('chai');
 
 class PastebinPage extends Page {
-  //This will enter test into postform
-  async enter_postform(postformText) {
-    await driver
-      .findElement(By.xpath('//*[@id="postform-text"]'))
-      .sendKeys(postformText);
+  constructor(){
+    super()
+    this.postform = '//*[@id="postform-text"]';
+    this.highlighterDroplist = '//span[@id="select2-postform-format-container"]';
+    this.syntaxInput = '//input[@class="select2-search__field"]'
+    this.expirationDroplist = '//*[@id="select2-postform-expiration-container"]';
+    this.neededExpiration = '//*[@id="select2-postform-expiration-results"]/li[3]';
+    this.pasteName = '//input[@id="postform-name"]';
+    this.pasteText = '//textarea[@class="textarea"]';
+    this.highlighterElement = '//a[@href="/archive/bash"]';
+
+    this.open(this.pastebinUrl);
+    driver.manage().window().maximize();
   }
-  //This will find syntax highlighter field
-  async find_syntaxHighlighlitingForm() {
-    await driver
-      .findElement(By.css('span#select2-postform-format-container'))
-      .click();
+  async createPaste(){
+    await HelpIt.write(this.postform, this.postformText);
+    await HelpIt.clickElement(this.highlighterDroplist);
+    await HelpIt.writeAndSumbit(this.syntaxInput, "Bash")
+    await HelpIt.choseDroplistElement(this.expirationDroplist, this.neededExpiration);
+    await HelpIt.writeAndSumbit(this.pasteName, this.title);
   }
-  //This will chose syntax highlight - Bash
-  async chose_syntaxHighlighter() {
-    await driver
-      .findElement(By.xpath('/html/body/span[2]/span/span[1]/input'))
-      .sendKeys('Bash', Key.RETURN);
-  }
-  //This will find Expiration time droplist
-  async find_expirationForm() {
-    await driver
-      .findElement(By.xpath('//*[@id="select2-postform-expiration-container"]'))
-      .click();
-  }
-  //This will choose Expiration time = 10 MIN
-  async chose_expiration() {
-    await driver
-      .findElement(
-        By.xpath('//*[@id="select2-postform-expiration-results"]/li[3]')
-      )
-      .click();
-  }
-  //This will enter postform name
-  async enter_postformName(postformNameText) {
-    await driver
-      .findElement(By.id('postform-name'))
-      .sendKeys(postformNameText, Key.RETURN);
+  async checkPaste(){
+    await HelpIt.checkElementByXpath(this.pasteText, this.postformText);
+    await HelpIt.checkElementByXpath(this.highlighterElement,this.bashHighlighter);
+    await HelpIt.checkTitle(this.title);
+    await driver.quit();
   }
 
-  //This will check text highlightion
-  async check_textHighlighter() {
-    let bashSyntax = await driver
-      .findElement(By.xpath('//a[@href="/archive/bash"]'))
-      .getText();
-    expect(bashSyntax).to.equal('Bash');
-  }
-  //This will check paste itself
-  async check_pasteText() {
-    let pasteCode = await driver
-      .findElement(By.xpath('//textarea[@class="textarea"]'))
-      .getText();
-    expect(pasteCode).to.equal(gitCommands);
-  }
-  get textElement() {
-    return '/html/body/div[1]/div[2]/div[1]/div[2]/textarea';
-  }
-  get pastebinUrl() {
-    return 'http://pastebin.com/';
-  }
-  get gitCommands() {
+  get pastebinUrl() {return 'http://pastebin.com/';}
+  get title() { return 'how to gain dominance among developers';}
+  get bashHighlighter() { return "Bash";}
+  get postformText() {
     return `git config --global user.name  "New Sheriff in Town"
 git reset $(git commit-tree HEAD^{tree} -m "Legacy code")
 git push origin master --force`;
-  }
-  get title() {
-    return 'how to gain dominance among developers';
   }
 }
 
