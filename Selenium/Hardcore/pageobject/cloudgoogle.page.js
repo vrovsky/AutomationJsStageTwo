@@ -1,5 +1,6 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var Page = require('./page');
+var EstimatePage = require('./estimate.page');
 const { expect } = require('chai');
 var HelpIt = require('../functions/helpit');
 
@@ -31,6 +32,13 @@ class CloudGooglePage extends Page {
   async switchToGoogleEmailField() {
     await this.switchWindows(0);
     await this.switchToFrame();
+  }
+  async copyGeneratedEmail(){
+    let generatedMail = await driver
+      .findElement(By.xpath('//*[@id="egen"]'))
+      .getText();
+    await this.switchToGoogleEmailField();
+    await EstimatePage.addGeneratedEmail(generatedMail);
   }
 
   get googleCalcTitle() {

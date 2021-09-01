@@ -35,11 +35,5 @@ class HelpIt extends Page {
     let checkedElement = await driver.findElement(By.xpath(element)).getText();
     await expect(checkedElement).to.include(text);
   }
-
-  async writeGeneratedEmail(element) {
-    let generatedMail = await driver.findElement(By.xpath(element)).getText();
-    await CloudGooglePage.switchToGoogleEmailField();
-    await EstimatePage.addGeneratedEmail(generatedMail);
-  }
 }
 module.exports = new HelpIt();

@@ -9,6 +9,7 @@ class YopmailPage extends Page {
     this.checkMailBtn = '//button[@class="md but text f24 egenbut"][2]';
     this.refreshMailBtn = '//button[@id="refresh"]';
     this.generatedEmail = '//*[@id="egen"]';
+    this.mailedPrice = '//div[@id="mail"]//div//div//table//tbody//tr[2]//table//tbody//tr[2]//td[2]//h3';
   }
   async openYopmail() {
     await driver.switchTo().newWindow('tab');
@@ -34,6 +35,19 @@ class YopmailPage extends Page {
     await driver
       .switchTo()
       .frame(await driver.findElement(By.xpath('//iframe[@name="ifmail"]')));
+  }
+ async checkMailedPrice(){
+   await HelpIt.checkElementByXpath(this.mailedPrice, this.price);
+  };
+
+  async openPriceMail(){
+    await this.switchWindows(1);
+    await this.clickCheckMailBtn();
+    await this.clickRefreshBtn();
+    await this.switchToFrame();
+  }
+  get price(){
+    return 'USD 900.32';
   }
 
   get yopmailUrl() {

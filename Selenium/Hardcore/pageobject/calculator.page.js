@@ -87,6 +87,15 @@ class CalculatorPage extends Page {
   async checkAddingResults() {
     await HelpIt.checkElementByXpath(this.addToEstimateBtn, 'ADD TO ESTIMATE');
   }
+  async choseMachine(){
+    await this.addNumberOfInstances();
+    await this.choseMachineSeries();
+    await this.choseMachineType();
+    await this.addGPU();
+    await this.choseDatacenterLocation();
+    await this.choseUsageTime();
+    await this.clickAddToEstimateBtn()
+  }
 }
 
 module.exports = new CalculatorPage();
