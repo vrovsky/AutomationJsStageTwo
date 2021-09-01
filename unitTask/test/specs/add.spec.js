@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable comma-dangle */
-// eslint-disable-next-line object-curly-spacing
 const Calculator = require('../../app/calculator');
 const { expect } = require('chai');
 

@@ -9,6 +9,10 @@
     "ecmaVersion": 12
   },
   "rules": {
+    "indent": "off",
+    "@quotes": "off",
+    "comma-dangle": "off",
+    "max-len": "off",
     "linebreak-style": 0,
     "space-before-function-paren": 0,
     "object-curly-spacing": 0
