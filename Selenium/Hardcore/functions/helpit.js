@@ -21,6 +21,7 @@ class HelpIt extends Page {
   async choseDroplistElement(droplist, element) {
     await driver.wait(until.elementLocated(By.xpath(droplist), 5000));
     await driver.findElement(By.xpath(droplist)).click();
+    await driver.wait(until.elementLocated(By.xpath(element), 5000));
     await driver.findElement(By.xpath(element)).click();
   }
 

@@ -1,7 +1,7 @@
 const CloudGooglePage = require('../pageobject/cloudgoogle.page');
-const YopmailPage = require('../pageobject/yopmail.page');
+const YopmailPageFn = require('../functions/yopmailPageFn');
 const EstimatePage = require('../pageobject/estimate.page');
-const CalculatorPage = require('../pageobject/calculator.page');
+const CalculatorPageFn = require('../functions/calculatorPageFn');
 
 describe('Hardcore task for selenium webdriver tutorial', function () {
   this.timeout(50000);
@@ -11,19 +11,19 @@ describe('Hardcore task for selenium webdriver tutorial', function () {
     await CloudGooglePage.switchToFrame();
   });
   it('should chose virtual machine parameters', async () => {
-    await CalculatorPage.choseMachine();
+    await CalculatorPageFn.choseMachine();
     await EstimatePage.clickEmailEstimateBtn();
   });
   it('should switch to mail page and generate new email', async () => {
-    await YopmailPage.openYopmail();
-    await YopmailPage.clickGenerateMailBtn();
+    await YopmailPageFn.openYopmail();
+    await YopmailPageFn.clickGenerateMailBtn();
   });
   it('should generate new email and copy it', async () => {
     await CloudGooglePage.copyGeneratedEmail();
     await EstimatePage.sendEmail();
   });
-  it('should check emailed price', async () => {
-    await YopmailPage.openPriceMail();
-    await YopmailPage.checkMailedPrice();
+  it('should check mailed price', async () => {
+    await YopmailPageFn.openPriceMail();
+    await YopmailPageFn.checkMailedPrice();
   });
 });

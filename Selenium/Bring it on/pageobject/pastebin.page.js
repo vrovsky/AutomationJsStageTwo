@@ -1,8 +1,5 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
 var Page = require('./page');
-var HelpIt = require('../functions/helpit');
-var webdriver = require('selenium-webdriver');
-const { expect } = require('chai');
+
 
 class PastebinPage extends Page {
   constructor(){
@@ -18,19 +15,6 @@ class PastebinPage extends Page {
 
     this.open(this.pastebinUrl);
     driver.manage().window().maximize();
-  }
-  async createPaste(){
-    await HelpIt.write(this.postform, this.postformText);
-    await HelpIt.clickElement(this.highlighterDroplist);
-    await HelpIt.writeAndSumbit(this.syntaxInput, "Bash")
-    await HelpIt.choseDroplistElement(this.expirationDroplist, this.neededExpiration);
-    await HelpIt.writeAndSumbit(this.pasteName, this.title);
-  }
-  async checkPaste(){
-    await HelpIt.checkElementByXpath(this.pasteText, this.postformText);
-    await HelpIt.checkElementByXpath(this.highlighterElement,this.bashHighlighter);
-    await HelpIt.checkTitle(this.title);
-    await driver.quit();
   }
 
   get pastebinUrl() {return 'http://pastebin.com/';}

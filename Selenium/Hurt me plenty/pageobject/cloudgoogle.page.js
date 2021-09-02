@@ -9,8 +9,7 @@ class CloudGooglePage extends Page {
     this.searchBox = '//div[@class="devsite-searchbox"]';
     this.inputSearch = '//input[@name="q"]';
     this.searchResults = '//a[@class="gs-title"][1]';
-    this.calculatorNameElement =
-      '//div[@class="md-toolbar-tools flex-gt-sm-50"]//h2';
+    this.calculatorNameElement = '//div[@class="md-toolbar-tools flex-gt-sm-50"]//h2';
 
     this.open(this.cloudGoogleUrl);
     driver.manage().window().maximize();
@@ -21,6 +20,7 @@ class CloudGooglePage extends Page {
     await HelpIt.writeAndSumbit(this.inputSearch, this.googleCalcTitle);
     await HelpIt.clickElement(this.searchResults);
   }
+
   async switchToFrame() {
     await driver
       .switchTo()
@@ -29,6 +29,7 @@ class CloudGooglePage extends Page {
       );
     await driver.switchTo().frame(await driver.findElement(By.id('myFrame')));
   }
+  
   async checkSearchingResults() {
     await HelpIt.checkElementByXpath(
       this.calculatorNameElement,

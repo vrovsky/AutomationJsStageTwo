@@ -1,6 +1,6 @@
 const CloudGooglePage = require('../pageobject/cloudgoogle.page');
-const CalculatorPage = require('../pageobject/calculator.page');
-const EstimatePage = require('../pageobject/estimate.page');
+const CalculatorPageFn = require('../functions/calculatorPageFn');
+const EstimatePageFn = require('../functions/estimatePageFn');
 
 describe('Hurt me plenty task for selenium webdriver tutorial', function () {
   this.timeout(50000);
@@ -11,23 +11,12 @@ describe('Hurt me plenty task for selenium webdriver tutorial', function () {
     await CloudGooglePage.checkSearchingResults();
   });
   it('should chose virtual machine parameters', async () => {
-    await CalculatorPage.addNumberOfInstances();
-    await CalculatorPage.choseMachineSeries();
-    await CalculatorPage.choseMachineType();
-    await CalculatorPage.addGPU();
-    await CalculatorPage.addSDD();
-    await CalculatorPage.choseDatacenterLocation();
-    await CalculatorPage.choseUsageTime();
-    await CalculatorPage.clickAddToEstimateBtn();
-    await CalculatorPage.checkAddingResults();
+    await CalculatorPageFn.choseMachine();
+    await CalculatorPageFn.checkAddingResults();
   });
 
   it('should check fields and price', async () => {
-    await EstimatePage.checkVMClass();
-    await EstimatePage.checkInstanceType();
-    await EstimatePage.checkLocalSDD();
-    await EstimatePage.checkRegion();
-    await EstimatePage.checkCommitmentTerm();
-    await EstimatePage.checkEstimatedCost();
+    await EstimatePageFn.checkMachineParameters();
+    await EstimatePageFn.checkEstimatedCost();
   });
 });
