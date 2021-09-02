@@ -14,7 +14,7 @@ class HelpIt extends Page {
         await element.addValue(text);
         await element.keys('\uE007');
     }
-    async choseFromDroplist(droplist, element){
+    async choseDroplistElement(droplist, element){
         await droplist.waitForExist(5000);
         await droplist.click();
         await element.waitForExist(5000);
@@ -29,4 +29,3 @@ class HelpIt extends Page {
     }
 }
 module.exports = new HelpIt();
-

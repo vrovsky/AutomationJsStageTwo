@@ -1,12 +1,10 @@
-import PastebinPage from '../pageobjects/pastebin.page';
+import PastebinPageFn from '../../functions/pastebinPageFn';
+
 describe('Bring it on webdriverIO task', () => {
-  before(() => {
-    PastebinPage.open();
-  });
-  it('create new paste', async () => {
-    await PastebinPage.createPaste();
-    await PastebinPage.checkPaste();
+
+  it('should create new paste', async () => {
+    await PastebinPageFn.createPaste();
+    await PastebinPageFn.checkPaste();
   });
   
-
 });
