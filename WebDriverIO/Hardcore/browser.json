@@ -1,0 +1,16 @@
+{
+    "chrome":{
+      
+      "maxInstances": 5,
+      "browserName": "chrome",
+      "acceptInsecureCerts": true
+
+    },
+    "firefox": 
+       {
+      "maxInstances": 5,
+      "browserName": "firefox",
+      "acceptInsecureCerts": true
+    }
+      
+}

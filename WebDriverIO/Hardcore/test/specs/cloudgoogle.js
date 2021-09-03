@@ -1,6 +1,5 @@
 import CloudgooglePage from '../pageobjects/cloudgoogle.page';
 import CalculatorPageFn from '../../functions/calculatorPageFn';
-import EstimatePageFn from '../../functions/estimatePageFn';
 import YopmailPage from '../pageobjects/yopmail.page';
 
 describe('Hurt me plenty webdriverIO task', () => {
@@ -9,7 +8,7 @@ describe('Hurt me plenty webdriverIO task', () => {
     await CloudgooglePage.openPricingCalc();
     await CloudgooglePage.checkTitle();
   });
-  it('should chose number of instances', async () => {
+  it('should chose machine parameters', async () => {
     await CalculatorPageFn.switchToCalculatorFrame();
     await CalculatorPageFn.choseMachine();
     await CalculatorPageFn.checkAddingResults();

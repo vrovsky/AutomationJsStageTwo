@@ -10,12 +10,12 @@ class CalculatorPageFn extends Page{
   async switchToGoogleWindow(){
     await browser.switchWindow('cloud.google.com');
   }
-    async switchToCalculatorFrame(){
-      await browser.switchToFrame(0);
-        await browser.switchToFrame(0);
-    }
-    async addNumberOfInstances() {
-      await HelpIt.write(CalculatorPage.numberOfInstances, '4');
+  async switchToCalculatorFrame(){
+    await browser.switchToFrame(0);
+    await browser.switchToFrame(0);
+  }
+  async addNumberOfInstances() {
+    await HelpIt.write(CalculatorPage.numberOfInstances, '4');
   }
   async choseMachineSeries() {
     await HelpIt.choseDroplistElement(CalculatorPage.machineSeriesList, CalculatorPage.n1MachineSeries);

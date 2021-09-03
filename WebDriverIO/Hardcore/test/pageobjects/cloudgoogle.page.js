@@ -17,6 +17,7 @@ class CloudgooglePage extends Page {
     this.open();
     await HelpIt.click(this.searchBox);
     await HelpIt.writeAndSumbit(this.inputSearch, this.googleCalcTitle);
+    await this.searchResult.waitForExist(5000);
     await HelpIt.click(this.searchResult);
   }
   async checkTitle(){
