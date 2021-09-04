@@ -1,5 +1,7 @@
 const yargs = require('yargs');
-const argv = yargs.argv;
+const chose = yargs.argv;
+
+
 
 exports.config = {
   //
@@ -57,18 +59,14 @@ exports.config = {
       // 5 instances get started at a time.
       maxInstances: 5,
       //
-      browserName: 'chrome',
+      browserName: "chrome",
+      // `${chose.browser}`,
       acceptInsecureCerts: true,
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
     },
-    // {
-    //   maxInstances: 5,
-    //   browserName: 'firefox',
-    //   acceptInsecureCerts: true,
-    // }
   ],
   //
   // ===================
@@ -139,7 +137,9 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  reporters: ['spec',['junit', {
+            outputDir: './report'
+        }] ],
 
   //
   // Options to be passed to Mocha.
@@ -209,8 +209,9 @@ exports.config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  // },
+  beforeTest: function (test, context) {
+    browser.maximazeWindow();
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
@@ -221,8 +222,11 @@ exports.config = {
    * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
    * afterEach in Mocha)
    */
-  // afterHook: function (test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterHook: function (test, context, { error, result, duration, passed, retries }) {
+    if (error){
+      browser.takeScreenshot();
+    }
+  },
   /**
    * Function to be executed after a test (in Mocha/Jasmine).
    */
